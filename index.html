@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Discoverthreejs.com - Your First Scene</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+
+  <link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
+
+  <link href="./styles/main.css" rel="stylesheet" type="text/css">
+
+  <script type="module" src="./src/main.js"></script>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.158.0/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Discoverthreejs.com - Your First Scene</h1>
+    <button id="start-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+        <path d="M10.29 15.71L15.29 10.71C15.68 10.32 15.68 9.68 15.29 9.29L10.29 4.29C9.9 3.9 9.26 3.9 8.87 4.29L4.29 8.87C3.9 9.26 3.9 9.9 4.29 10.29L9.29 15.29C9.68 15.68 10.32 15.68 10.71 15.29z"/>
+      </svg>
+      Check out the 3d stuff!
+    </button>
+  <div id="scene-container">
+    <!-- Our <canvas> will be inserted here -->
+  </div>
+  <div id="info">
+    
+</body>
+
+</html>
