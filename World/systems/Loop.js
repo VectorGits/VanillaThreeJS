@@ -30,7 +30,12 @@ class Loop {
 
 
     for (const object of this.updatables) {
-      object.tick(delta);
+      // Check if the object has a tick method before calling it
+      if (object.tick && typeof object.tick === 'function') {
+        object.tick(delta);
+      } else {
+        console.warn('Object in updatables does not have a tick method:', object);
+      }
     }
   }
 
