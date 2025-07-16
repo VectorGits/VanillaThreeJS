@@ -30,14 +30,14 @@ class World {
     
     const cube = createCube();
     const sphere = createSphere();
-    const light = createLights();
+    const { ambientLight, mainLight } = createLights();
 
     loop.updatables.push(controls); // Add controls to updatables
-    // loop.updatables.push(cube);
-    // loop.updatables.push(sphere); // Add sphere to updatables
+    loop.updatables.push(cube);
+    loop.updatables.push(sphere); // Add sphere to updatables
     // loop.updatables.push(camera); // Add camera to updatables to enable animation
     
-    scene.add(light, cube, sphere);
+    scene.add(ambientLight, mainLight, cube, sphere);
 
     const resizer = new Resizer(container, camera, renderer);
     this.canvas = renderer.domElement;
