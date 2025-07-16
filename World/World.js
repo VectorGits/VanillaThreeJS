@@ -1,5 +1,6 @@
 import { createCamera } from "./components/camera.js";
 import { createCube } from "./components/cube.js";
+import { createMeshGroup } from "./components/meshGroup.js";
 import { createSphere } from "./components/sphere.js";
 import { createLights } from "./components/lights.js";
 import { createScene } from "./components/scene.js";
@@ -30,14 +31,16 @@ class World {
     
     const cube = createCube();
     const sphere = createSphere();
+    const meshGroup = createMeshGroup();
     const { ambientLight, mainLight } = createLights();
 
     loop.updatables.push(controls); // Add controls to updatables
     loop.updatables.push(cube);
     loop.updatables.push(sphere); // Add sphere to updatables
+    loop.updatables.push(meshGroup);
     // loop.updatables.push(camera); // Add camera to updatables to enable animation
-    
-    scene.add(ambientLight, mainLight, cube, sphere);
+
+    scene.add(ambientLight, mainLight, cube, sphere, meshGroup);
 
     const resizer = new Resizer(container, camera, renderer);
     this.canvas = renderer.domElement;

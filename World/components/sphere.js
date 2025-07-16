@@ -39,7 +39,7 @@ function createSphere() {
     sphere.rotation.y += delta * radiansPerSecond;
   }
 
-  sphere.position.set(2, 2, -3); // Set the position of the sphere in the scene
+  sphere.position.set(4, 2, 0); // Set the position of the sphere in the scene
   return sphere; // Return the created sphere mesh
 }
 
