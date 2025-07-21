@@ -1,9 +1,10 @@
 import { createCamera } from "./components/camera.js";
 import { createCube } from "./components/cube.js";
-import { createMeshGroup } from "./components/meshGroup.js";
+// import { createMeshGroup } from "./components/meshGroup.js";
 import { createSphere } from "./components/sphere.js";
 import { createLights } from "./components/lights.js";
 import { createScene } from "./components/scene.js";
+import { Train } from "./components/train/Train.js";
 
 import { createControls } from "./systems/control.js";
 import { createRenderer } from "./systems/renderer.js";
@@ -29,18 +30,19 @@ class World {
 
     const controls = createControls(camera, renderer.domElement);
     
-    const cube = createCube();
-    const sphere = createSphere();
-    const meshGroup = createMeshGroup();
+    // const cube = createCube();
+    // const sphere = createSphere();
+    // const meshGroup = createMeshGroup();
     const { ambientLight, mainLight } = createLights();
+    const train = new Train();
 
     loop.updatables.push(controls); // Add controls to updatables
-    loop.updatables.push(cube);
-    loop.updatables.push(sphere); // Add sphere to updatables
-    loop.updatables.push(meshGroup);
+    // loop.updatables.push(cube);
+    // loop.updatables.push(sphere); // Add sphere to updatables
+    loop.updatables.push(train);
     // loop.updatables.push(camera); // Add camera to updatables to enable animation
 
-    scene.add(ambientLight, mainLight, cube, sphere, meshGroup);
+    scene.add(ambientLight, mainLight, train,);
 
     const resizer = new Resizer(container, camera, renderer);
     this.canvas = renderer.domElement;

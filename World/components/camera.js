@@ -9,7 +9,7 @@ function createCamera() {
   );
 
   // move the camera back so we can see the scene
-  camera.position.set(0, 0, 10);
+  camera.position.set(-5, 5, 7);
 
   // Animation state variables
   const originalPosition = new Vector3(0, 0, 10);

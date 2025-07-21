@@ -10,11 +10,11 @@ function createLights() {
   const ambientLight = new HemisphereLight(
     'white',
     'darkslategrey',
-    5,
+    3,
   );
 
   // Create a directional light
-  const mainLight = new DirectionalLight('white', 5);
+  const mainLight = new DirectionalLight('white', 2);
 
   // move the light right, up, and towards us
   mainLight.position.set(10, 10, 10);
