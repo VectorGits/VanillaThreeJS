@@ -1,55 +1,46 @@
-import { createCamera } from "./components/camera.js";
-import { createCube } from "./components/cube.js";
-// import { createMeshGroup } from "./components/meshGroup.js";
-import { createSphere } from "./components/sphere.js";
-import { createLights } from "./components/lights.js";
-import { createScene } from "./components/scene.js";
-import { Train } from "./components/train/Train.js";
+import { loadBirds } from './components/birds/birds.js';
+import { createCamera } from './components/camera.js';
+import { createLights } from './components/lights.js';
+import { createScene } from './components/scene.js';
 
-import { createControls } from "./systems/control.js";
-import { createRenderer } from "./systems/renderer.js";
-import { Resizer } from "./systems/Resizer.js";
-import { Loop } from "./systems/Loop.js";
+import { createControls } from './systems/controls.js';
+import { createRenderer } from './systems/renderer.js';
+import { Resizer } from './systems/Resizer.js';
+import { Loop } from './systems/Loop.js';
 
-// These variables are module-scoped: we cannot access them
-// from outside the module
 let camera;
+let controls;
 let renderer;
 let scene;
 let loop;
 
-
 class World {
-  // 1. Create an instance of the World app
   constructor(container) {
     camera = createCamera();
-    scene = createScene();
     renderer = createRenderer();
+    scene = createScene();
     loop = new Loop(camera, scene, renderer);
     container.append(renderer.domElement);
+    controls = createControls(camera, renderer.domElement);
 
-    const controls = createControls(camera, renderer.domElement);
-    
-    // const cube = createCube();
-    // const sphere = createSphere();
-    // const meshGroup = createMeshGroup();
     const { ambientLight, mainLight } = createLights();
-    const train = new Train();
 
-    loop.updatables.push(controls); // Add controls to updatables
-    // loop.updatables.push(cube);
-    // loop.updatables.push(sphere); // Add sphere to updatables
-    loop.updatables.push(train);
-    // loop.updatables.push(camera); // Add camera to updatables to enable animation
-
-    scene.add(ambientLight, mainLight, train,);
+    loop.updatables.push(controls);
+    scene.add(ambientLight, mainLight);
 
     const resizer = new Resizer(container, camera, renderer);
-    this.canvas = renderer.domElement;
   }
-  
 
-  // 2. Render the scene
+  async init() {
+    const { parrot, flamingo, stork } = await loadBirds();
+
+    // move the target to the center of the front bird
+    controls.target.copy(parrot.position);
+
+    loop.updatables.push(parrot, flamingo, stork);
+    scene.add(parrot, flamingo, stork);
+  }
+
   render() {
     renderer.render(scene, camera);
   }
